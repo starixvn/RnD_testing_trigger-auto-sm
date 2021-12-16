@@ -18,6 +18,7 @@ build:
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
             if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
             then
+                isRun=1
                 isReady=0
                 while [[ $isReady == 0 ]] ; do
                   countStatus=$(curl --header "PRIVATE-TOKEN:fM519JLzefd9T47iLaDJ" "https://git3.nexdev.net/api/v4/projects/382/pipelines?scope=running" | jq length)
@@ -36,6 +37,8 @@ build:
             fi
         done
       done
+      #if product exist in list game then
+        if [[ $isRun == 1 ]] ; then
         iscompleted=0
         while [[ $iscompleted == 0 ]] ; do
                   countStatus1=$(curl --header "PRIVATE-TOKEN:fM519JLzefd9T47iLaDJ" "https://git3.nexdev.net/api/v4/projects/382/pipelines?scope=running" | jq length)
@@ -66,3 +69,4 @@ build:
                         echo "job passed"
                         exit 0
                       fi
+                                            fi
