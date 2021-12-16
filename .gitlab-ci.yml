@@ -26,6 +26,7 @@ build:
                     isReady=1
                     echo "$i"
                     curl -X POST -F token=4b5da91ea888d6b441805328cbe65f -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/382/trigger/pipeline
+                    sleep 10
                   else
                     sleep 20
                   fi
